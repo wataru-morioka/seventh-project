@@ -13,7 +13,12 @@ POSTGRES_USER = os.environ["POSTGRES_USER"]
 POSTGRES_PASSWORD = os.environ["POSTGRES_PASSWORD"]
 POSTGRES_DB = os.environ["POSTGRES_DB"]
 
-DB_URL = 'postgresql+psycopg2://{user}:{pw}@{url}/{db}'.format(user=POSTGRES_USER,pw=POSTGRES_PASSWORD,url=POSTGRES_URL,db=POSTGRES_DB)
+DB_URL = 'postgresql+psycopg2://{user}:{pw}@{url}/{db}'.format(
+    user=POSTGRES_USER,
+    pw=POSTGRES_PASSWORD,
+    url=POSTGRES_URL,
+    db=POSTGRES_DB
+    )
 
 app = Flask(__name__)
 CORS(app)
@@ -55,12 +60,12 @@ class UserInfo(Resource):
         # id = request.args.get('id')
         # result = [n for n in users if n["id"] == id]
 
-        # user = User(2, 'wataru')
+        user = User(1, 'wataru')
 
-        # db.session.add(user)
+        db.session.add(user)
 
-        # db.session.commit()
-        user = User.query.filter_by(id = 2).first()
+        db.session.commit()
+        user = User.query.filter_by(id = 1).first()
 
         return jsonify(user_schema.dump(user).data)
         # return users[0]
