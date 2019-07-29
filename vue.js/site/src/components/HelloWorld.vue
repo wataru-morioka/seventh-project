@@ -1,6 +1,14 @@
 <template lang="pug">
   div.hello
     button(@click='getName') 取得します
+    button(@click='login', v-show='!this.$store.state.isLogin') ログイン
+    button(@click='logout', v-show='this.$store.state.isLogin') ログアウト
+    br
+    a(href='http://vuejs-templates.github.io/webpack/', target='_blank', v-if='this.$store.state.isLogin') management
+    br
+    a(href='http://vuejs-templates.github.io/webpack/', target='_blank', v-if='this.$store.state.isLogin') service
+    br
+    a(href='http://vuejs-templates.github.io/webpack/', target='_blank', v-if='this.$store.state.isLogin') rtc
     p For a guide and recipes on how to configure / customize this project,
       br
       | check out the
@@ -34,6 +42,13 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
+// const CLIENT_ID = '663686156877-bua33phfd4fa92270u8g7pqosm9bqf7u.apps.googleusercontent.com';
+
+// @Component({
+//     components: {
+//       GoogleLogin,
+//     },
+// })
 
 @Component
 export default class HelloWorld extends Vue {
@@ -42,10 +57,26 @@ export default class HelloWorld extends Vue {
   private getName(): void {
     this.$store.dispatch('test')
     .then(() => {
-      console.log('success');
-      console.log(this.$store.state.userName);
       alert(this.$store.state.userName);
     });
+  }
+
+  private login(): void {
+    this.$store.dispatch('login')
+    .then(() => {
+      alert(this.$store.state.userCode);
+    });
+  }
+
+  private logout(): void {
+    this.$store.dispatch('logout')
+    .then(() => {
+      alert(this.$store.state.userCode);
+    });
+  }
+
+  mounted() {
+    this.$store.dispatch('checkLoginStatus');
   }
 }
 </script>
@@ -53,6 +84,10 @@ export default class HelloWorld extends Vue {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 $mes-color: #42b983;
+
+button{
+  margin: 10px;
+}
 
 h3 {
   margin: 40px 0 0;

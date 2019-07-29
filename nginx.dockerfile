@@ -8,10 +8,13 @@ RUN apt-get update && apt-get install -y vim && \
     apt-get install -y curl && \
     apt-get install -y procps && \
     mkdir /var/log/nginx/site && \
-    mkdir /var/log/nginx/service
+    mkdir /var/log/nginx/service && \
+    mkdir /etc/nginx/tls
 
 # RUN /bin/cp -f /usr/share/zoneinfo/Asia/Tokyo /etc/localtime
 ADD ./uwsgi_params /etc/nginx/uwsgi_params
 ADD ./vhost.conf /etc/nginx/conf.d/default.conf
+ADD ./tls/nginx-server.key /etc/nginx/tls/nginx-server.key
+ADD ./tls/nginx-server.crt /etc/nginx/tls/nginx-server.crt
 
 WORKDIR /var/www
