@@ -7,6 +7,7 @@ RUN apt-get update && \
     apt-get install -y vim && \
     pip install --upgrade pip && \
     pip install -r requirements.txt && \
+    pip install requests && \
     useradd -m -s /bin/bash -u 1000 wataru && \
     mkdir /var/log/uwsgi && \
     mkdir /app && \

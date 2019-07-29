@@ -16,14 +16,15 @@ export default new Vuex.Store({
     uid: '',
     idToken: '',
     email: '',
+    displayName: '',
   },
   mutations: {
     setUser(state, payload) {
       state.userName = payload.name;
     },
 
-    setToken(state, payload) {
-      state.idToken = payload.idToken;
+    setDisplayName(state, payload) {
+      state.displayName = payload.displayName;
     },
 
     setUserInfo(state, payload) {
@@ -59,8 +60,8 @@ export default new Vuex.Store({
       };
       await axios.post('https://flask.site:443/user', body)
       .then((res) => {
-        commit('setToken', {
-          idToken: res.data.idToken,
+        commit('setDisplayName', {
+          displayName: res.data.displayName,
         });
       });
     },
@@ -112,6 +113,7 @@ export default new Vuex.Store({
         uid: currentUser.uid,
         idToken: token,
         email: currentUser.email,
+        displayName: currentUser.displayName,
       });
     },
   },

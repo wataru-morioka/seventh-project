@@ -51,7 +51,7 @@ export default class HelloWorld extends Vue {
   private getName(): void {
     this.$store.dispatch('post_test')
     .then(() => {
-      alert(this.$store.state.idToken);
+      alert(this.$store.state.displayName);
     });
   }
 
