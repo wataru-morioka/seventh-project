@@ -49,9 +49,9 @@ export default class HelloWorld extends Vue {
   @Prop() private msg!: string;
 
   private getName(): void {
-    this.$store.dispatch('test')
+    this.$store.dispatch('post_test')
     .then(() => {
-      alert(this.$store.state.userName);
+      alert(this.$store.state.idToken);
     });
   }
 

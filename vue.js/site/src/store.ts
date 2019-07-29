@@ -22,6 +22,10 @@ export default new Vuex.Store({
       state.userName = payload.name;
     },
 
+    setToken(state, payload) {
+      state.idToken = payload.idToken;
+    },
+
     setUserInfo(state, payload) {
       state.isLogin = true;
       state.uid = payload.uid;
@@ -34,7 +38,7 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    async test({ commit, state, rootState })  {
+    async test({ commit, state, rootState }) {
       await axios.get('https://flask.site:443/user',
       // , {
       //     httpsAgent: new https.Agent({
@@ -45,6 +49,18 @@ export default new Vuex.Store({
       .then((res) => {
         commit('setUser', {
           name: res.data.name,
+        });
+      });
+    },
+
+    async post_test({ commit, state, rootState }) {
+      const body = {
+        idToken: this.state.idToken,
+      };
+      await axios.post('https://flask.site:443/user', body)
+      .then((res) => {
+        commit('setToken', {
+          idToken: res.data.idToken,
         });
       });
     },
