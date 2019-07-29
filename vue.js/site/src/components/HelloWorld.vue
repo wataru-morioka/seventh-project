@@ -9,6 +9,7 @@
     a(href='http://vuejs-templates.github.io/webpack/', target='_blank', v-if='this.$store.state.isLogin') service
     br
     a(href='http://vuejs-templates.github.io/webpack/', target='_blank', v-if='this.$store.state.isLogin') rtc
+    p(v-if='this.$store.state.isLogin') {{ this.$store.state.email }}
     p For a guide and recipes on how to configure / customize this project,
       br
       | check out the
@@ -42,13 +43,6 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-// const CLIENT_ID = '663686156877-bua33phfd4fa92270u8g7pqosm9bqf7u.apps.googleusercontent.com';
-
-// @Component({
-//     components: {
-//       GoogleLogin,
-//     },
-// })
 
 @Component
 export default class HelloWorld extends Vue {
@@ -62,20 +56,14 @@ export default class HelloWorld extends Vue {
   }
 
   private login(): void {
-    this.$store.dispatch('login')
-    .then(() => {
-      alert(this.$store.state.userCode);
-    });
+    this.$store.dispatch('login');
   }
 
   private logout(): void {
-    this.$store.dispatch('logout')
-    .then(() => {
-      alert(this.$store.state.userCode);
-    });
+    this.$store.dispatch('logout');
   }
 
-  mounted() {
+  private beforeCreate() {
     this.$store.dispatch('checkLoginStatus');
   }
 }

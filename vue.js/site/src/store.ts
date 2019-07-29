@@ -13,21 +13,25 @@ export default new Vuex.Store({
   state: {
     userName: 'wataru',
     isLogin: false,
-    token: '',
+    uid: '',
+    idToken: '',
+    email: '',
   },
   mutations: {
     setUser(state, payload) {
       state.userName = payload.name;
     },
 
-    login(state, payload) {
+    setUserInfo(state, payload) {
       state.isLogin = true;
-      state.token = payload.token;
+      state.uid = payload.uid;
+      state.idToken = payload.idToken;
+      state.email = payload.email;
     },
 
     changeStatus(state, payload) {
       state.isLogin = payload.status;
-    }
+    },
   },
   actions: {
     async test({ commit, state, rootState })  {
@@ -49,20 +53,9 @@ export default new Vuex.Store({
       const provider = new firebase.auth.GoogleAuthProvider();
 
       await firebase.auth().signInWithPopup(provider)
-      .then((result) => {
-        console.log(result);
-        if (result.credential == null) {
-          alert('ログインに失敗しました');
-          return;
-        }
-
-        alert('ログインしました');
-        commit('login', {
-          token: result.credential,
-        });
-
+      .then(async (result) => {
+        this.dispatch('setUserInfo');
       }).catch((error) => {
-        console.log(error);
         alert('ログインに失敗しました');
       });
     },
@@ -73,7 +66,6 @@ export default new Vuex.Store({
         commit('changeStatus', {
           status: false,
         });
-        alert('ログアウトしました');
       })
       .catch((err) => {
         alert('ログアウトに失敗しました');
@@ -81,14 +73,31 @@ export default new Vuex.Store({
     },
 
     async checkLoginStatus({ commit, state, rootState }) {
-      await firebase.auth().onAuthStateChanged((user) => {
+      await firebase.auth().onAuthStateChanged(async (user) => {
         commit('changeStatus', {
           status: !!user,
         });
-        console.log(user);
+
+        if (!user) {
+          return;
+        }
+        this.dispatch('setUserInfo');
       });
     },
 
+    async setUserInfo({ commit, state, rootState }) {
+      const currentUser = firebase.auth().currentUser;
+      if (currentUser == null) {
+        return;
+      }
+
+      const token = await currentUser.getIdToken(true);
+      this.commit('setUserInfo', {
+        uid: currentUser.uid,
+        idToken: token,
+        email: currentUser.email,
+      });
+    },
   },
   getters: {
     getName: (state, getters) => () => {
