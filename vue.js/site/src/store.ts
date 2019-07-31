@@ -58,10 +58,17 @@ export default new Vuex.Store({
       const body = {
         idToken: this.state.idToken,
       };
-      await axios.post('https://flask.site:443/user', body)
+      // await axios.post('https://flask.site:443/user', body)
+      // .then((res) => {
+      //   commit('setDisplayName', {
+      //     displayName: res.data.displayName,
+      //   });
+      // });
+
+      await axios.get('https://django.service/api/service/user')
       .then((res) => {
         commit('setDisplayName', {
-          displayName: res.data.displayName,
+          displayName: res.data.name,
         });
       });
     },

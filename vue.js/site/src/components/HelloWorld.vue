@@ -1,15 +1,15 @@
 <template lang="pug">
   div.hello
     button(@click='getName') 取得します
-    button(@click='login', v-show='!this.$store.state.isLogin') ログイン
-    button(@click='logout', v-show='this.$store.state.isLogin') ログアウト
+    button(@click='login', v-show='!$store.state.isLogin') ログイン
+    button(@click='logout', v-show='$store.state.isLogin') ログアウト
     br
-    a(href='http://vuejs-templates.github.io/webpack/', target='_blank', v-if='this.$store.state.isLogin') management
+    a(href='http://vuejs-templates.github.io/webpack/', target='_blank', v-if='$store.state.isLogin') management
     br
-    a(href='http://vuejs-templates.github.io/webpack/', target='_blank', v-if='this.$store.state.isLogin') service
+    a(href='http://vuejs-templates.github.io/webpack/', target='_blank', v-if='$store.state.isLogin') service
     br
-    a(href='http://vuejs-templates.github.io/webpack/', target='_blank', v-if='this.$store.state.isLogin') rtc
-    p(v-if='this.$store.state.isLogin') {{ this.$store.state.email }}
+    a(href='http://vuejs-templates.github.io/webpack/', target='_blank', v-if='$store.state.isLogin') rtc
+    p(v-if='$store.state.isLogin') {{ $store.state.email }}
     p For a guide and recipes on how to configure / customize this project,
       br
       | check out the
