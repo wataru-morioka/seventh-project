@@ -23,7 +23,7 @@ commands:
     steps:
       - save_cache:
           paths:
-            - ~/seventh-project/vue.js/site/node_modules
+            - ~/node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
 jobs:
