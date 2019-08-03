@@ -35,7 +35,7 @@ jobs:
       - run: npm install
       - save_npm
       # run tests!
-      - run: echo "hello!""
+      - run: echo "hello!!"
   test:
     executor: default
     steps:
