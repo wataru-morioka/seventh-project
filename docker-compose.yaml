@@ -67,14 +67,14 @@ services:
       - 6000
     environment:
       - TZ=Asia/Tokyo
-      - POSTGRES_URL=${POSTGRES_URL}
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=${POSTGRES_DB}
-      - MYSQL_URL=${MYSQL_URL}
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-      - MYSQL_DB=${MYSQL_DB}
+      - POSTGRES_URL=postgres:5432
+      - POSTGRES_USER=wataru
+      - POSTGRES_PASSWORD=wataru
+      - POSTGRES_DB=seventh_project
+      - MYSQL_URL=mysql:3306
+      - MYSQL_USER=wataru
+      - MYSQL_PASSWORD=wataru
+      - MYSQL_DB=seventh_project
     # command: 
     #   - "/bin/bash"
     #   - "-c"
@@ -95,13 +95,21 @@ services:
       - 6000
     environment:
       - TZ=Asia/Tokyo
-      - POSTGRES_URL=${POSTGRES_URL}
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=${POSTGRES_DB}
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-      - MYSQL_DB=${MYSQL_DB}
+      - POSTGRES_URL=postgres:5432
+      - POSTGRES_USER=wataru
+      - POSTGRES_PASSWORD=wataru
+      - POSTGRES_DB=seventh_project
+      - MYSQL_URL=mysql:3306
+      - MYSQL_USER=wataru
+      - MYSQL_PASSWORD=wataru
+      - MYSQL_DB=seventh_project
+      # - POSTGRES_URL=${POSTGRES_URL}
+      # - POSTGRES_USER=${POSTGRES_USER}
+      # - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      # - POSTGRES_DB=${POSTGRES_DB}
+      # - MYSQL_USER=${MYSQL_USER}
+      # - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      # - MYSQL_DB=${MYSQL_DB}
     # command: 
     #   - "/bin/bash"
     #   - "-c"
@@ -124,9 +132,9 @@ services:
       - ./postgres:/var/lib/postgresql/data
     environment:
       - TZ=Asia/Tokyo
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_URL=postgres:5432
+      - POSTGRES_USER=wataru
+      - POSTGRES_PASSWORD=wataru
   mysql:
     image: mysql:8.0.17
     container_name: mysql
@@ -139,8 +147,8 @@ services:
     environment:
       - TZ=Asia/Tokyo
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_USER=wataru
+      - MYSQL_PASSWORD=wataru
 networks:
   seventh-project-net:
       driver: bridge
