@@ -6,7 +6,7 @@ version: 2.1
 
 executors:
   default:
-    working_directory: ~/vue.js/site
+    working_directory: ~/seventh-project/vue.js/site
     docker:
       - image: circleci/node:12.7.0
 
@@ -23,7 +23,7 @@ commands:
     steps:
       - save_cache:
           paths:
-            - ~/vue.js/site/node_modules
+            - ~/seventh-project/vue.js/site/node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
 jobs:
