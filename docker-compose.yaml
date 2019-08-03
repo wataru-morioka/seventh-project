@@ -14,35 +14,35 @@ services:
       seventh-project-net:
     volumes:
       - ./vue.js:/app
-  vue-site-management:
-    build:
-      context: ./
-      dockerfile: vue.dockerfile
-    container_name: vue-site-management
-    ports:
-      - 9088:8080
-      - 9001:8000
-    environment:
-      TZ: "Asia/Tokyo"
-    command: "tail -f /dev/null"
-    networks:
-      seventh-project-net:
-    volumes:
-      - ./vue.js:/app
-  vue-service:
-    build:
-      context: ./
-      dockerfile: vue.dockerfile
-    container_name: vue-service
-    ports:
-      - 10080:8080
-    environment:
-      TZ: "Asia/Tokyo"
-    command: "tail -f /dev/null"
-    networks:
-      seventh-project-net:
-    volumes:
-      - ./vue.js:/app
+  # vue-site-management:
+  #   build:
+  #     context: ./
+  #     dockerfile: vue.dockerfile
+  #   container_name: vue-site-management
+  #   ports:
+  #     - 9088:8080
+  #     - 9001:8000
+  #   environment:
+  #     TZ: "Asia/Tokyo"
+  #   command: "tail -f /dev/null"
+  #   networks:
+  #     seventh-project-net:
+  #   volumes:
+  #     - ./vue.js:/app
+  # vue-service:
+  #   build:
+  #     context: ./
+  #     dockerfile: vue.dockerfile
+  #   container_name: vue-service
+  #   ports:
+  #     - 10080:8080
+  #   environment:
+  #     TZ: "Asia/Tokyo"
+  #   command: "tail -f /dev/null"
+  #   networks:
+  #     seventh-project-net:
+  #   volumes:
+  #     - ./vue.js:/app
   nginx:
     build:
       context: ./

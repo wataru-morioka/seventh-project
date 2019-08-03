@@ -75,7 +75,6 @@ export default new Vuex.Store({
 
     async login({ commit, state, rootState }) {
       const provider = new firebase.auth.GoogleAuthProvider();
-
       await firebase.auth().signInWithPopup(provider)
       .then(async (result) => {
         this.dispatch('setUserInfo');
