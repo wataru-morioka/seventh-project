@@ -6,7 +6,7 @@ version: 2.1
 
 executors:
   default:
-    working_directory: ~/seventh-project
+    # working_directory: ~/seventh-project/vue.js/site
     docker:
       - image: circleci/node:12.7.0
 
@@ -32,8 +32,7 @@ jobs:
     steps:
       - checkout
       - restore_npm
-      - run: cd ~/seventh-project/vue.js/site
-      - run: npm install
+      - run: npm —prefix ~/seventh-project/vue.js/site install ~/seventh-project/vue.js/site
       - save_npm
       # run tests!
       - run: echo "hello!!"
