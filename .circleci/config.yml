@@ -35,7 +35,8 @@ jobs:
       - checkout
       - restore_npm
       - run: ls -l ~/seventh-project
-      - run: npm --prefix ~/seventh-project/vue.js/site install ~/seventh-project/vue.js/site
+      # - run: npm --prefix ~/seventh-project/vue.js/site install ~/seventh-project/vue.js/site
+      - run: npm install
       - run: git config user.name $GITHUB_NAME
       - run: git config user.email $GITHUB_EMAIL
       - run: npm run all
