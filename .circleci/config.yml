@@ -32,6 +32,7 @@ jobs:
     steps:
       - checkout
       - restore_npm
+      - run: ls -l ~/seventh-project
       - run: npm install
       - save_npm
       # run tests!
