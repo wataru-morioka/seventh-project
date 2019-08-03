@@ -32,7 +32,7 @@ jobs:
     steps:
       - checkout
       - restore_npm
-      - run: ls -l ~/seventh-project
+      - run: ls -l ~/seventh-project/vue.js/site
       - run: npm install
       - save_npm
       # run tests!
