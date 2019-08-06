@@ -1,0 +1,32 @@
+{
+    "name": "Remote-dev Project",
+    "dockerComposeFile": [
+      "../docker-compose.yml",
+      "docker-compose.extend.yml"
+    ],
+    "service": "vue",
+    "workspaceFolder": "/app/site",
+    "settings": {
+      "editor.tabSize": 2,
+      "files.insertFinalNewline": true,
+      "files.trimFinalNewlines": true,
+      "terminal.integrated.shell.linux": "/bin/sh"
+    },
+    // "service": "flask",
+    // "workspaceFolder": "/app/site",
+    // "settings": {
+    //   "editor.tabSize": 2,
+    //   "files.insertFinalNewline": true,
+    //   "files.trimFinalNewlines": true,
+    //   "terminal.integrated.shell.linux": "/bin/bash"
+    // },
+    // "service": "django",
+    // "workspaceFolder": "/app/project",
+    // "settings": {
+    //   "editor.tabSize": 2,
+    //   "files.insertFinalNewline": true,
+    //   "files.trimFinalNewlines": true,
+    //   "terminal.integrated.shell.linux": "/bin/bash"
+    // },
+    "shutdownAction": "none" // or "stopCompose"
+  }
