@@ -4,17 +4,17 @@ services:
     # environment:
     #   - HOME=/home/root
     volumes:
-      - ~/.gitconfig:/home/root/.gitconfig
-      - ~/.ssh:/home/root/.ssh
+      - ~/.gitconfig:/root/.gitconfig
+      - ~/.ssh:/root/.ssh
   flask:
     # environment:
     #   - HOME=/home/root
     volumes:
-      - ~/.gitconfig:/home/root/.gitconfig
-      - ~/.ssh:/home/root/.ssh
+      - ~/.gitconfig:/root/.gitconfig
+      - ~/.ssh:/root/.ssh
   django:
     # environment:
     #   - HOME=/home/root
     volumes:
-      - ~/.gitconfig:/home/root/.gitconfig
-      - ~/.ssh:/home/root/.ssh
+      - ~/.gitconfig:/root/.gitconfig
+      - ~/.ssh:/root/.ssh
