@@ -18,3 +18,9 @@ services:
     volumes:
       - ~/.gitconfig:/root/.gitconfig
       - ~/.ssh:/root/.ssh
+  cpp:
+    # environment:
+    #   - HOME=/home/root
+    volumes:
+      - ~/.gitconfig:/root/.gitconfig
+      - ~/.ssh:/root/.ssh

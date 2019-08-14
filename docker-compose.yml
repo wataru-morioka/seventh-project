@@ -14,35 +14,6 @@ services:
       seventh-project-net:
     volumes:
       - ./vue.js:/app
-  # vue-site-management:
-  #   build:
-  #     context: ./
-  #     dockerfile: vue.dockerfile
-  #   container_name: vue-site-management
-  #   ports:
-  #     - 9088:8080
-  #     - 9001:8000
-  #   environment:
-  #     TZ: "Asia/Tokyo"
-  #   command: "tail -f /dev/null"
-  #   networks:
-  #     seventh-project-net:
-  #   volumes:
-  #     - ./vue.js:/app
-  # vue-service:
-  #   build:
-  #     context: ./
-  #     dockerfile: vue.dockerfile
-  #   container_name: vue-service
-  #   ports:
-  #     - 10080:8080
-  #   environment:
-  #     TZ: "Asia/Tokyo"
-  #   command: "tail -f /dev/null"
-  #   networks:
-  #     seventh-project-net:
-  #   volumes:
-  #     - ./vue.js:/app
   nginx:
     build:
       context: ./
@@ -128,6 +99,20 @@ services:
       seventh-project-net:
     volumes:
       - ./django:/app/project
+  cpp:
+    build:
+      context: ./
+      dockerfile: cpp.dockerfile
+    container_name: cpp
+    ports:
+      - 7777:7777
+    environment:
+      - TZ=Asia/Tokyo
+    command: /bin/bash -c "tail -f /dev/null"
+    networks:
+      seventh-project-net:
+    volumes:
+      - ./cpp:/project
   postgres:
     image: postgres:11.2
     container_name: postgres
@@ -156,6 +141,29 @@ services:
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
       - MYSQL_USER=${MYSQL_USER}
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+  swagger-editor:
+    image: swaggerapi/swagger-editor
+    container_name: swagger-editor
+    ports:
+      - 8500:8080
+  swagger-ui:
+    image: swaggerapi/swagger-ui
+    container_name: swagger-ui-management
+    ports:
+      - 8501:8080
+    volumes:
+      - ./swagger/management/openapi.yaml:/openapi.yaml
+    environment:
+      SWAGGER_JSON: /openapi.yaml
+      # API_URL: ""
+  swagger-api:
+    image: danielgtaylor/apisprout
+    container_name: swagger-api-management
+    ports:
+      - 8502:8080
+    volumes:
+      - ./swagger/management/openapi.yaml:/openapi.yaml
+    command: /openapi.yaml
 networks:
   seventh-project-net:
       driver: bridge
