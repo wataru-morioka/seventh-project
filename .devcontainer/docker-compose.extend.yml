@@ -24,3 +24,9 @@ services:
     volumes:
       - ~/.gitconfig:/root/.gitconfig
       - ~/.ssh:/root/.ssh
+  express:
+    # environment:
+    #   - HOME=/home/root
+    volumes:
+      - ~/.gitconfig:/root/.gitconfig
+      - ~/.ssh:/root/.ssh

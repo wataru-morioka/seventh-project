@@ -12,8 +12,16 @@
     //   "files.trimFinalNewlines": true,
     //   "terminal.integrated.shell.linux": "/bin/sh"
     // },
-    "service": "cpp",
-    "workspaceFolder": "/project",
+    // "service": "cpp",
+    // "workspaceFolder": "/project",
+    // "settings": {
+    //   "editor.tabSize": 2,
+    //   "files.insertFinalNewline": true,
+    //   "files.trimFinalNewlines": true,
+    //   "terminal.integrated.shell.linux": "/bin/bash"
+    // },
+    "service": "express",
+    "workspaceFolder": "/app",
     "settings": {
       "editor.tabSize": 2,
       "files.insertFinalNewline": true,
