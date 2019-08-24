@@ -7,5 +7,5 @@ RUN apk update && \
     npm install -g express-generator nodemon webpack webpack-cli webpack-node-externals 
     # npm init
     # npm install --save express swagger-jsdoc @types/express @types/node typescript ts-loader tslint tslint-loader tslint-config-airbnb
-    #  cors swagger-ui-express swagger-jsdoc ts-node yamljs @types/swagger-ui-express @types/yamljs multer pg @types/pg imagemin imagemin-jpegtran imagemin-pngquant imagemin-svgo imagemin-gifsicle
+    #  cors swagger-ui-express swagger-jsdoc ts-node yamljs @types/swagger-ui-express @types/yamljs multer pg @types/pg imagemin imagemin-jpegtran imagemin-mozjpeg imagemin-pngquant imagemin-svgo imagemin-gifsicle
     

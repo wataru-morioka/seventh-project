@@ -7,7 +7,7 @@ RUN apk update && \
     npm install -g npm @vue/cli gulp-cli @types/node && \
     mkdir /root/.ssh
     # npm init
-    # npm install --save pug pug-plain-loader axios https-agent @types/node firebase npm-run-all firebase-tools sw-offline-google-analytics
-    #gulp gulp-exec gulp-imagemin imagemin-jpeg-recompress imagemin-pngquant imagemin-svgo imagemin-gifsicle imagemin-webp gh-pages@2.0
+    # npm install --save pug pug-plain-loader axios https-agent @types/node firebase npm-run-all firebase-tools sw-offline-google-analytics @types/jquery jquery@3.4.1
+    #gulp gulp-exec gulp-imagemin imagemin-jpeg-recompress imagemin-pngquant imagemin-svgo imagemin-gifsicle imagemin-webp gh-pages@2.0 semantic-ui-vue
     
 EXPOSE 8000
