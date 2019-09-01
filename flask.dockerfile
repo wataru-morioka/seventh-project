@@ -8,6 +8,7 @@ RUN apt-get update && \
     pip install --upgrade pip && \
     pip install -r requirements.txt && \
     pip install requests && \
+    pip install marshmallow-sqlalchemy && \
     useradd -m -s /bin/bash -u 1000 wataru && \
     mkdir /var/log/uwsgi && \
     mkdir /app && \
