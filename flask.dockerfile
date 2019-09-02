@@ -9,6 +9,7 @@ RUN apt-get update && \
     pip install -r requirements.txt && \
     pip install requests && \
     pip install marshmallow-sqlalchemy && \
+    pip install firebase-admin && \
     useradd -m -s /bin/bash -u 1000 wataru && \
     mkdir /var/log/uwsgi && \
     mkdir /app && \
