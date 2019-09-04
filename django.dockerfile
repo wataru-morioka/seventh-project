@@ -10,11 +10,14 @@ RUN apt-get update && \
     pip install requests && \
     pip install djangorestframework django-filter && \
     pip install -r service-requirements.txt && \
+    pip install firebase-admin && \
     useradd -m -s /bin/bash -u 1000 wataru && \
     mkdir /var/log/uwsgi && \
     mkdir /app && \
     mkdir /app/project 
 ADD ./service-uwsgi.ini /app/uwsgi.ini
+
+#TODO firebase-service.jsonファイルコピー
 
 WORKDIR /app/project
 

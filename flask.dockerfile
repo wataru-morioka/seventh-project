@@ -9,14 +9,16 @@ RUN apt-get update && \
     pip install -r requirements.txt && \
     pip install requests && \
     pip install marshmallow-sqlalchemy && \
-    # pip install firebase-admin && \
-    pip install firebase-admin oauth2client google-api-python-client google-auth-httplib2 google-auth-oauthlib && \
+    pip install firebase-admin && \
+    # pip install firebase-admin oauth2client google-api-python-client google-auth-httplib2 google-auth-oauthlib && \
     useradd -m -s /bin/bash -u 1000 wataru && \
     mkdir /var/log/uwsgi && \
     mkdir /app && \
     mkdir /app/site && \
     chmod -R 766 /app/site
-    # mkdir /app/site/src
+
+    #TODO firebase-service.jsonファイルコピー
+
 ADD ./uwsgi.ini /app/uwsgi.ini
 
 WORKDIR /app/site
