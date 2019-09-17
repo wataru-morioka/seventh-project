@@ -9,5 +9,6 @@ RUN apk update && \
     # npm init
     # npm install --save pug pug-plain-loader axios https-agent @types/node firebase npm-run-all firebase-tools sw-offline-google-analytics @types/jquery jquery@3.4.1
     #gulp gulp-exec gulp-imagemin imagemin-jpeg-recompress imagemin-pngquant imagemin-svgo imagemin-gifsicle imagemin-webp gh-pages@2.0 semantic-ui-vue flatpickr
+    #vue-mixin-decorator
     
 EXPOSE 8000
