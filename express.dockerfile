@@ -8,5 +8,5 @@ RUN apk update && \
     npm install --save express swagger-jsdoc @types/express @types/node typescript ts-loader tslint tslint-loader tslint-config-airbnb && \
         cors swagger-ui-express swagger-jsdoc ts-node yamljs @types/swagger-ui-express @types/yamljs multer pg @types/pg && \
         imagemin imagemin-jpegtran imagemin-mozjpeg imagemin-pngquant imagemin-svgo imagemin-gifsicle firebase-admin && \
-        typeorm reflect-metadata moment mysql fluent-ffmpeg @ffmpeg-installer/ffmpeg fs-extra
+        typeorm reflect-metadata moment mysql fluent-ffmpeg @ffmpeg-installer/ffmpeg fs-extra @types/fs-extra
     
