@@ -1,0 +1,32 @@
+version: "3"
+services:
+  vue:
+    # environment:
+    #   - HOME=/home/root
+    volumes:
+      - ~/.gitconfig:/root/.gitconfig
+      - ~/.ssh:/root/.ssh
+  flask:
+    # environment:
+    #   - HOME=/home/root
+    volumes:
+      - ~/.gitconfig:/root/.gitconfig
+      - ~/.ssh:/root/.ssh
+  django:
+    # environment:
+    #   - HOME=/home/root
+    volumes:
+      - ~/.gitconfig:/root/.gitconfig
+      - ~/.ssh:/root/.ssh
+  cpp:
+    # environment:
+    #   - HOME=/home/root
+    volumes:
+      - ~/.gitconfig:/root/.gitconfig
+      - ~/.ssh:/root/.ssh
+  express:
+    # environment:
+    #   - HOME=/home/root
+    volumes:
+      - ~/.gitconfig:/root/.gitconfig
+      - ~/.ssh:/root/.ssh

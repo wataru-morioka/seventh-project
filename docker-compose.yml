@@ -1,0 +1,202 @@
+version: '3'
+services:
+  vue:
+    build:
+      context: ./
+      dockerfile: vue.dockerfile
+    container_name: vue-site
+    ports:
+      - 9080:8080
+    environment:
+      TZ: "Asia/Tokyo"
+    command: "tail -f /dev/null"
+    networks:
+      seventh-project-net:
+    volumes:
+      - ./vue.js:/app
+  nginx:
+    build:
+      context: ./
+      dockerfile: nginx.dockerfile
+    container_name: nginx
+    ports:
+      - 80:80
+      - 443:443
+    environment:
+      TZ: "Asia/Tokyo"
+    networks:
+      seventh-project-net:
+    volumes:
+      - ./nginx:/var/www
+      - ./static:/static
+  flask:
+    build:
+      context: ./
+      dockerfile: flask.dockerfile
+    container_name: flask
+    ports:
+      - 6000
+    environment:
+      - TZ=Asia/Tokyo
+      # - POSTGRES_URL=postgres:5432
+      # - POSTGRES_USER=wataru
+      # - POSTGRES_PASSWORD=wataru
+      # - POSTGRES_DB=seventh_project
+      # - MYSQL_URL=mysql:3306
+      # - MYSQL_USER=wataru
+      # - MYSQL_PASSWORD=wataru
+      # - MYSQL_DB=seventh_project
+      - POSTGRES_URL=${POSTGRES_URL}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DB=${MYSQL_DB}
+      - GOOGLE_ACCOUNT=${GOOGLE_ACCOUNT}
+      - GOOGLE_ACCOUNT_PASS=${GOOGLE_ACCOUNT_PASS}
+    # command: 
+    #   - "/bin/bash"
+    #   - "-c"
+    #   - >
+    #     chmod 755 /app/uwsgi.ini;
+    #     uwsgi --ini /app/uwsgi.ini;
+    command: /bin/bash -c "tail -f /dev/null"
+    networks:
+      seventh-project-net:
+    volumes:
+      - ./flask:/app/site
+  express:
+    build:
+      context: ./
+      dockerfile: express.dockerfile
+    container_name: express
+    ports:
+      - 7000:7000
+    environment:
+      - TZ=Asia/Tokyo
+      # - POSTGRES_URL=postgres:5432
+      # - POSTGRES_USER=wataru
+      # - POSTGRES_PASSWORD=wataru
+      # - POSTGRES_DB=seventh_project
+      # - MYSQL_URL=mysql:3306
+      # - MYSQL_USER=wataru
+      # - MYSQL_PASSWORD=wataru
+      # - MYSQL_DB=seventh_project
+      - POSTGRES_URL=${POSTGRES_URL}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DB=${MYSQL_DB}
+    # command: 
+    #   - "/bin/bash"
+    #   - "-c"
+    #   - >
+    #     chmod 755 /app/uwsgi.ini;
+    #     uwsgi --ini /app/uwsgi.ini;
+    command: /bin/bash -c "tail -f /dev/null"
+    networks:
+      seventh-project-net:
+    volumes:
+      - ./express:/app
+  django:
+    build:
+      context: ./
+      dockerfile: django.dockerfile
+    container_name: django
+    ports:
+      - 6000
+    environment:
+      - TZ=Asia/Tokyo
+      # - POSTGRES_URL=postgres:5432
+      # - POSTGRES_USER=wataru
+      # - POSTGRES_PASSWORD=wataru
+      # - POSTGRES_DB=seventh_project
+      # - MYSQL_URL=mysql:3306
+      # - MYSQL_USER=wataru
+      # - MYSQL_PASSWORD=wataru
+      # - MYSQL_DB=seventh_project
+      - POSTGRES_URL=${POSTGRES_URL}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_DB=${MYSQL_DB}
+    # command: 
+    #   - "/bin/bash"
+    #   - "-c"
+    #   - >
+    #     chmod 755 /app/uwsgi.ini;
+    #     uwsgi --ini /app/uwsgi.ini;
+    command: /bin/bash -c "tail -f /dev/null"
+    networks:
+      seventh-project-net:
+    volumes:
+      - ./django:/app/project
+  cpp:
+    build:
+      context: ./
+      dockerfile: cpp.dockerfile
+    container_name: cpp
+    ports:
+      - 7777:7777
+    environment:
+      - TZ=Asia/Tokyo
+    command: /bin/bash -c "tail -f /dev/null"
+    networks:
+      seventh-project-net:
+    volumes:
+      - ./cpp:/project
+  postgres:
+    image: postgres:11.2
+    container_name: postgres
+    ports:
+      - 5432:5432
+    networks:
+      seventh-project-net:
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+    environment:
+      - TZ=Asia/Tokyo
+      - POSTGRES_URL=postgres:5432
+      - POSTGRES_USER=wataru
+      - POSTGRES_PASSWORD=wataru
+  mysql:
+    image: mysql:8.0.17
+    container_name: mysql
+    ports:
+      - 3307:3306
+    networks:
+      seventh-project-net:
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      - TZ=Asia/Tokyo
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+  swagger-editor:
+    image: swaggerapi/swagger-editor
+    container_name: swagger-editor
+    ports:
+      - 8500:8080
+  swagger-ui:
+    image: swaggerapi/swagger-ui
+    container_name: swagger-ui-management
+    ports:
+      - 8501:8080
+    volumes:
+      - ./swagger:/swagger
+    environment:
+      SWAGGER_JSON: /swagger/management-openapi.yaml
+      # API_URL: ""
+networks:
+  seventh-project-net:
+      driver: bridge
+      ipam:
+          driver: default
+          config:
+            - subnet: 172.10.0.0/24
