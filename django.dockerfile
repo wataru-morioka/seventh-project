@@ -1,5 +1,7 @@
 FROM python:3.7
+
 ENV PYTHONUNBUFFERED 1
+
 RUN mkdir /conf
 WORKDIR /conf
 ADD ./service-requirements.txt /conf/
@@ -15,10 +17,8 @@ RUN apt-get update && \
     mkdir /var/log/uwsgi && \
     mkdir /app && \
     mkdir /app/project 
+
 ADD ./service-uwsgi.ini /app/uwsgi.ini
-
-#TODO firebase-service.jsonファイルコピー
-
 WORKDIR /app/project
 
 
